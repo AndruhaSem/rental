@@ -1,0 +1,123 @@
+html[data-theme="light"] {
+    --button-text-rental-color: #000;
+    --button-background-rental-color: #eb5a1e;
+    --button-border-rental-color: #eb5a1e;
+
+    --label-text-rental-color: #fff;
+    --label-background-rental-color: #fff;
+    --label-border-rental-color: rgba(0, 0, 0, 0.25);
+    --label-text-rental-check-color: #fff;
+    --label-background-rental-click-color: #eb5a1e;
+
+    --counter-background-rental-color: #f2ede7;
+    --counter-background-rental-hover-color: #eb5a1e;
+    --counter-text-rental-hover-color: #000;
+
+    --input-text-rental-color: #000;
+    --input-background-rental-color: #fff;
+    --input-border-rental-color: #ced4da;
+
+    --background-rental-color: linear-gradient(#141e30, #243b55);
+    --background: #ffcdd2;
+    /*table*/
+
+    --table-background-statistics-color: #fff;
+    --table-thed-background-statistics-color: linear-gradient(#141e30, #243b55);
+    --table-thed-text-statistics-color: #fff;
+    --table-tbod-background-statistics-color: gray;
+    --table-tbod-chil-text-statistics-color: #f5f5f5;
+    --button-tbod-background-statistics-color: #eb5a1e;
+    --button-tbod-border-statistics-color: #000;
+    --button-tbod-text-statistics-color: #000;
+    --button-page-text-statistics-color: #0d6efd;
+    --button-page-background-statistics-color: #fff;
+    --button-page-border-statistics-color: #dee2e6;
+    --button-page-active-border-statistics-color: #0d6efd;
+    --button-page-active-color-statistics-color: #fff;
+    --button-page-hover-background-statistics-color: #e9ecef;
+    --button-hover-background-statistics-color: #eb5a1e;
+    /**/
+    --row-background-form-color: #fff;
+    --row-text-form-color: #111;
+    --button-row-border-form-color: #0d6efd;
+    --button-row--background-color: #0d6efd;
+    --button-row-text-form-color: #fff;
+    --imput-hover-text-form-color: #03e9f4;
+    --imput-errors-phone-form-color: #dc3545;
+    --nav-background-color: #fff;
+    --nav-hoover-background-color: #dedede;
+    --booking-text-color: #111;
+    --booking-background-color: #bc8f8f;
+    --button-booking-background-color: #fae8d2;
+    --button-booking-border-color: #7c7c7c;
+    --nav-text-color: #ffffff;
+    --nav-header-booking-color: #000;
+    --nav-rgb-color: rgb(0 0 0 / 40%);
+    --color-loading: #111;
+    --color-error-input: #dc3545;
+    --btn-border-password-color: #6c757d;
+    --slider-background: #dede;
+    --slider-button: #111;
+}
+
+html[data-theme="dark"] {
+    --button-text-rental-color: #ffffff;
+    --button-background-rental-color: #4e005c;
+    --button-border-rental-color: #ba8fc2;
+
+    --label-text-rental-color: #ffffff;
+    --label-background-rental-color: #ffffff;
+    --label-border-rental-color: #ba8fc2;
+    --label-text-rental-check-color: #ffffff;
+    --label-background-rental-click-color: #ba8fc2;
+
+    --counter-background-rental-color: #7c7c7c;
+    --counter-background-rental-hover-color: #ba8fc2;
+    --counter-text-rental-hover-color: #ffffff;
+
+    --input-text-rental-color: #ffffff;
+    --input-background-rental-color: #7c7c7c;
+    --input-border-rental-color: #ba8fc2;
+
+    --background-rental-color: #292929;
+    --background: #292929;
+    /*table*/
+    --table-background-statistics-color: #292929;
+    --table-thed-background-statistics-color: #ba8fc2;
+    --table-thed-text-statistics-color: #ffffff;
+    --table-tbod-background-statistics-color: #ffffff;
+    --table-tbod-chil-text-statistics-color: #545454;
+    --button-tbod-background-statistics-color: #4e005c;
+    --button-tbod-border-statistics-color: #ba8fc2;
+    --button-tbod-text-statistics-color: #ffffff;
+    --button-page-text-statistics-color: #ffffff;
+    --button-page-background-statistics-color: #7c7c7c;
+    --button-page-border-statistics-color: #ba8fc2;
+    --button-page-active-border-statistics-color: #4e005c;
+    --button-page-active-color-statistics-color: #ffffff;
+    --button-page-hover-background-statistics-color: #4e005c;
+    --button-hover-background-statistics-color: #4e005c;
+    /**/
+    --row-background-form-color: #6c757d;
+    --row-text-form-color: #ffffff;
+
+    --button-row-border-form-color: #ba8fc2;
+    --button-row--background-color: #4e005c;
+    --button-row-text-form-color: #ffffff;
+    --imput-hover-text-form-color: #ba8fc2;
+    --imput-errors-phone-form-color: #ba8fc2;
+    --nav-background-color: #ededed;
+    --nav-hoover-background-color: #6c757d;
+    --booking-text-color: #ffffff;
+    --booking-background-color: #7c7c7c;
+    --button-booking-background-color: #4e005c;
+    --button-booking-border-color: #ba8fc2;
+    --nav-text-color: #000;
+    --nav-header-booking-color: #fae8d2;
+    --nav-rgb-color: rgb(250 232 210 / 40%);
+    --color-loading: #ffffff;
+    --color-error-input: #ff7f50;
+    --btn-border-password-color: #ffffff;
+    --slider-background: #6c757d;
+    --slider-button: #ffffff;
+}
