@@ -208,7 +208,7 @@ body {
     background: #fff;
     border: 1px solid rgba(0, 0, 0, 0.175);
     border-radius: 0.375rem;
-    margin-left: 30px;
+    margin-left: 12px;
 }
 .dropdown-menu-jobs {
     display: none;
@@ -216,7 +216,7 @@ body {
     background: #fff;
     border: 1px solid rgba(0, 0, 0, 0.175);
     border-radius: 0.375rem;
-    margin-left: 85px;
+    margin-left: 25px;
 }
 .dropdown-menu-user.show,
 .dropdown-menu-jobs.show,
