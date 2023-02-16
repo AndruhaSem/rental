@@ -29,9 +29,7 @@ const Home = () => {
             <div className="home-container">
                 <div className="logo-contaimer">
                     <p className="logo-text">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Ipsa, aspernatur pariatur! Porro totam eveniet assumenda
-                        facere provident, labore deserunt neque.
+                       Главная страница для аренды и бронирования Sub-board
                     </p>
                 </div>
 
