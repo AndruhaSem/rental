@@ -20,10 +20,15 @@ router.patch("/:userId", auth, async (req, res) => {
     });
   }
 });
-router.get("/", auth, async (req, res) => {
+router.get("/:userId", auth, async (req, res) => {
+  const { userId } = req.params;
   try {
-    const list = await User.find();
-    res.send(list);
+    if (userId === req.user._id) {
+      const list = await User.findById(userId);
+      res.send(list);
+    } else {
+      res.status(401).json({ message: "Unauthorized" });
+    }
   } catch (e) {
     res.status(500).json({
       message: "На сервере произошла ошибкаю Попробуйте позжк",
