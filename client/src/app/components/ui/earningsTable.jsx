@@ -1,13 +1,22 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { getMoney, getMoneyLoadingStatus } from "../../store/money";
-import { getCurrentUserData, getUsersList } from "../../store/users";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+    getMoney,
+    getMoneyLoadingStatus,
+    loadmoneyList
+} from "../../store/money";
+import { getUsersList } from "../../store/users";
 
 const EarningsTable = () => {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(loadmoneyList());
+    }, []);
     const money = useSelector(getMoney());
     const isLoggedIn = useSelector(getMoneyLoadingStatus());
-    const currentUser = useSelector(getCurrentUserData());
-    const users = useSelector(getUsersList());
+
+    const currentUser = useSelector(getUsersList());
+
     const priceDay = 1000;
     const priceHourr = 500;
     const priceHalfDay = 1500;
@@ -66,9 +75,8 @@ const EarningsTable = () => {
         }
         return number;
     }
-    function personalZarobotok(mon, users) {
+    function personalZarobotok(mon) {
         let number = 0;
-        let fraction = 0;
 
         for (const priceHour in mon) {
             if (mon[priceHour].timeRental === 12) {
@@ -83,15 +91,10 @@ const EarningsTable = () => {
                     2;
             }
         }
-        for (const user in users) {
-            if (users[user].fraction) {
-                fraction += Number(users[user].fraction);
-            }
-        }
 
         return (
             (number / 100) *
-            ((Number(currentUser.fraction) * 100) / fraction).toFixed(0)
+            ((Number(currentUser.fraction) * 100) / 6).toFixed(0)
         );
     }
     if (!isLoggedIn) {
@@ -112,13 +115,12 @@ const EarningsTable = () => {
                     </tr>
                     <tr>
                         <td className="float-l">Личный зароботок : </td>
-                        <td className="float-r">
-                            {personalZarobotok(money, users)}
-                        </td>
+                        <td className="float-r">{personalZarobotok(money)}</td>
                     </tr>
                 </tbody>
             </table>
         );
     }
+    return "LOD";
 };
 export default EarningsTable;

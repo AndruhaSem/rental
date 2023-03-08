@@ -1,26 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
+import NavBarLk from "../../ui/navBarLk";
+import { Link } from "react-router-dom";
 
-import { useDarkMode } from "../../../hooks/useTheme";
+// import { useDarkMode } from "../../../hooks/useTheme";
 
 const UserPage = () => {
-    const [activ, setActiv] = useState(
-        localStorage.getItem("app-theme") === "dark"
-    );
-    const { handleClickTheme } = useDarkMode();
+    // const [activ, setActiv] = useState(
+    //     localStorage.getItem("app-theme") === "dark"
+    // );
+    // const { handleClickTheme } = useDarkMode();
 
-    function handleDarkMode() {
-        if (localStorage.getItem("app-theme") === "light") {
-            handleClickTheme("dark");
-            setActiv((prevState) => !prevState);
-        } else {
-            handleClickTheme("light");
-            setActiv((prevState) => !prevState);
-        }
-    }
+    // function handleDarkMode() {
+    //     if (localStorage.getItem("app-theme") === "light") {
+    //         handleClickTheme("dark");
+    //         setActiv((prevState) => !prevState);
+    //     } else {
+    //         handleClickTheme("light");
+    //         setActiv((prevState) => !prevState);
+    //     }
+    // }
 
     return (
         <>
-            <div className="rental-choice-page">
+            {/* <div className="rental-choice-page">
                 <label className="label">Тема</label>
                 <div className="form-container-rental">
                     <div className="form-check-rental">
@@ -35,6 +37,25 @@ const UserPage = () => {
                             Тёмная тема
                         </label>
                     </div>
+                </div>
+            </div> */}
+            <div className="Personal-area">
+                <div className="Personal-area_nav">
+                    <NavBarLk />
+                </div>
+                <div className="Personal-area_content">
+                    <Link to="/lk/details" className="div1 lo">
+                        Профиль
+                    </Link>
+                    <Link to="/rental" className="div2 lo">
+                        Аренда
+                    </Link>
+                    <Link to="/statistic" className="div3 lo">
+                        Статистика
+                    </Link>
+                    <Link to="/money" className="div4 lo">
+                        Деньги
+                    </Link>
                 </div>
             </div>
         </>

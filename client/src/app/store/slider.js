@@ -36,7 +36,7 @@ export function isOutdated(date) {
 }
 
 export const loadSliderList = () => async (dispatch, getState) => {
-    const { lastFetch } = getState().booking;
+    const { lastFetch } = getState().slider;
     if (isOutdated(lastFetch)) {
         dispatch(sliderRequested());
         try {

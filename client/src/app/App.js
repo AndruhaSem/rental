@@ -11,6 +11,9 @@ import ProtectedRouteJobs from "./components/common/protectedRoute/protectedRout
 import AppLoader from "./components/ui/hoc/appLoader";
 import { ThemeProvider } from "./hooks/useTheme";
 import User from "./layouts/user";
+import NotFound from "./layouts/notFound";
+import Home from "./layouts/home";
+import NavMobile from "./components/ui/navMobele";
 
 function App() {
     return (
@@ -20,18 +23,21 @@ function App() {
                     <NavBar />
 
                     <Switch>
-                        <Route path="/reservations" component={Reservations} />
-                        <Route path="/login/:type?" component={Login} />
-                        <Route path="/logout" component={LogOut} />
-                        <ProtectedRouteJobs path="/rental" component={Rental} />
+                        <Route path="/" exact component={Home} />
                         <ProtectedRouteAdmin
                             path="/statistic/:statisticId?"
                             component={Statistics}
                         />
-                        <Route path="/:userId?" component={User} />
+                        <Route path="/login/:type?" component={Login} />
+                        <Route path="/reservations" component={Reservations} />
 
-                        <Redirect to="/" />
+                        <Route path="/logout" component={LogOut} />
+                        <ProtectedRouteJobs path="/rental" component={Rental} />
+                        <Route path="/:userId?" component={User} />
+                        <Route path="/404" component={NotFound} />
+                        <Redirect to="/404" />
                     </Switch>
+                    <NavMobile />
                 </ThemeProvider>
             </AppLoader>
         </div>

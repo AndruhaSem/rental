@@ -1,12 +1,16 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import ProductList from "../components/common/productList";
 import ModalBar from "../components/ui/modalBar";
-import { getBooking } from "../store/booking";
+import { getBooking, loadBookingList } from "../store/booking";
 const Reservations = () => {
     const products = useSelector(getBooking());
     const [modal, setModal] = useState({ isOpen: false, productTitle: "" });
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(loadBookingList());
+    }, []);
 
     function toggleModal(productTitle = null) {
         setModal((prevState) => ({
@@ -18,14 +22,16 @@ const Reservations = () => {
 
     if (products) {
         return (
-            <div>
+            <div className="booking">
                 <ModalBar modal={modal} ontoggleModal={toggleModal} />
-                {products && (
-                    <ProductList
-                        products={products}
-                        toggleModal={toggleModal}
-                    />
-                )}
+                <div className="booking-list">
+                    {products && (
+                        <ProductList
+                            products={products}
+                            toggleModal={toggleModal}
+                        />
+                    )}
+                </div>
             </div>
         );
     }

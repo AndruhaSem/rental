@@ -8,6 +8,7 @@ import { validator } from "../utils/validatorRental";
 import { useDispatch } from "react-redux";
 import { createMoney } from "../store/money";
 import { createStatistics } from "../store/statistics";
+import NavBarLk from "../components/ui/navBarLk";
 
 function Rental() {
     const dispatch = useDispatch();
@@ -144,92 +145,99 @@ function Rental() {
     };
 
     return (
-        <div className="containerr">
-            <form onSubmit={handleSubmit}>
-                <div className="containerr_rental">
-                    <h2>SUP</h2>
-                    <ChoosingRental
-                        options={[
-                            { name: "Пляж", value: "Пляж", func: goBack },
-                            {
-                                name: "Помещение",
-                                value: "Помещение",
-                                func: goBack
-                            }
-                        ]}
-                        value={data.кentalСhoice}
-                        name="кentalСhoice"
-                        onChange={handleChange}
-                    />
-                    <NumberProduct
-                        handleIncrement={handleIncrement}
-                        handleDecrement={handleDecrement}
-                        quantity={data.quantity}
-                        label="Количество"
-                    />
-                    <TimeRental
-                        index={data.кentalСhoice}
-                        hour={data.timeRental}
-                        handleIncrement={handleIncrement}
-                        handleDecrement={handleDecrement}
-                        label="Время"
-                    />
-                    <RadioFild
-                        options={[
-                            { name: "Наличные", value: "Наличные" },
-                            { name: "Перевод", value: "Перевод" }
-                        ]}
-                        name="payment"
-                        onChange={handleChange}
-                        label="Способ оплаты"
-                    />
-                </div>
-                <div
-                    className={
-                        "container-info__client " +
-                        (data.кentalСhoice === "Помещение" ? "active" : "")
-                    }
-                >
-                    <RadioFild
-                        options={[
-                            { name: "Документы", value: "Документы" },
-                            { name: "Наличка", value: "Наличка" }
-                        ]}
-                        name="deposit"
-                        onChange={handleChange}
-                        label="Залог"
-                    />
-                    <label className="rental-label">Данные покупателя</label>
-                    <div className="width">
-                        <TextFieldRental
-                            label="И.Ф.О"
-                            name="name"
-                            type="text"
-                            value={data.name}
+        <>
+            <div className="Personal-area_nav">
+                <NavBarLk />
+            </div>
+            <div className="containerr">
+                <form onSubmit={handleSubmit}>
+                    <div className="containerr_rental">
+                        <h2>SUP</h2>
+                        <ChoosingRental
+                            options={[
+                                { name: "Пляж", value: "Пляж", func: goBack },
+                                {
+                                    name: "Помещение",
+                                    value: "Помещение",
+                                    func: goBack
+                                }
+                            ]}
+                            value={data.кentalСhoice}
+                            name="кentalСhoice"
                             onChange={handleChange}
-                            error={errors.name}
                         />
-                        <TextFieldRental
-                            label="Телефон"
-                            name="telephone"
-                            type="text"
-                            value={data.telephone}
+                        <NumberProduct
+                            handleIncrement={handleIncrement}
+                            handleDecrement={handleDecrement}
+                            quantity={data.quantity}
+                            label="Количество"
+                        />
+                        <TimeRental
+                            index={data.кentalСhoice}
+                            hour={data.timeRental}
+                            handleIncrement={handleIncrement}
+                            handleDecrement={handleDecrement}
+                            label="Время"
+                        />
+                        <RadioFild
+                            options={[
+                                { name: "Наличные", value: "Наличные" },
+                                { name: "Перевод", value: "Перевод" }
+                            ]}
+                            name="payment"
                             onChange={handleChange}
-                            error={errors.telephone}
+                            label="Способ оплаты"
                         />
                     </div>
-                </div>
-                <div className="create_button">
-                    <button
-                        className="create-button__arrange"
-                        type="submit"
-                        disabled={!isValid}
+                    <div
+                        className={
+                            "container-info__client " +
+                            (data.кentalСhoice === "Помещение" ? "active" : "")
+                        }
                     >
-                        Submit
-                    </button>
-                </div>
-            </form>
-        </div>
+                        <RadioFild
+                            options={[
+                                { name: "Документы", value: "Документы" },
+                                { name: "Наличка", value: "Наличка" }
+                            ]}
+                            name="deposit"
+                            onChange={handleChange}
+                            label="Залог"
+                        />
+                        <label className="rental-label">
+                            Данные покупателя
+                        </label>
+                        <div className="width">
+                            <TextFieldRental
+                                label="И.Ф.О"
+                                name="name"
+                                type="text"
+                                value={data.name}
+                                onChange={handleChange}
+                                error={errors.name}
+                            />
+                            <TextFieldRental
+                                label="Телефон"
+                                name="telephone"
+                                type="text"
+                                value={data.telephone}
+                                onChange={handleChange}
+                                error={errors.telephone}
+                            />
+                        </div>
+                    </div>
+                    <div className="create_button">
+                        <button
+                            className="create-button__arrange"
+                            type="submit"
+                            disabled={!isValid}
+                        >
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </>
     );
 }
 export default Rental;

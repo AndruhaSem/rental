@@ -16,7 +16,7 @@ const NavBar = () => {
                             Главное
                         </Link>
                     </li>
-                    <li className="nav-item">
+                    <li className="nav-item mobaile">
                         <Link className="nav-link" to="/reservations">
                             Бронирование
                         </Link>
@@ -26,7 +26,7 @@ const NavBar = () => {
                 {isLoggedIn ? (
                     <NavProfile />
                 ) : (
-                    <Link className="nav-link" to="/login">
+                    <Link className="nav-link mobaile" to="/login">
                         Login
                     </Link>
                 )}

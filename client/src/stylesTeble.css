@@ -1,3 +1,6 @@
+@media (max-width: 425px) {
+}
+
 .tbl-container a {
     text-decoration: none;
     color: var(--table-tbod-background-statistics-color);
@@ -37,7 +40,7 @@
 }
 .block-informationn {
     /* background: var(--table-background-statistics-color); */
-    margin-top: 30px;
+    /* margin-top: 30px; */
 }
 
 .tbl-header tr {
@@ -108,12 +111,4 @@ th i {
 .page-link.active,
 .active > .page-link:hover {
     background-color: var(--button-page-active-border-statistics-color);
-}
-
-.containers {
-    background-color: var(--background);
-    transition: background-color 200ms linear;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
 }

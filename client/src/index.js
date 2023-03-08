@@ -5,6 +5,7 @@ import "./stylesTeble.css";
 import "./App.css";
 import "./home.css";
 import "./index.css";
+import "./lk.css";
 import "./rental.css";
 import App from "./app/App";
 import { Router } from "react-router-dom";

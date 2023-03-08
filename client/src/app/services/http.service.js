@@ -2,6 +2,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import configFile from "../config.json";
 import authService from "./auth.service";
+
 import localStorageService from "./localStorage.service";
 
 const http = axios.create({
@@ -35,7 +36,6 @@ http.interceptors.request.use(
         } else {
             if (isExpired) {
                 const data = await authService.refresh();
-
                 localStorageService.setTokens(data);
             }
             const accessToken = localStorageService.getAccessToken();
@@ -52,6 +52,7 @@ http.interceptors.request.use(
         return Promise.reject(error);
     }
 );
+
 function transformData(data) {
     return data && !data._id
         ? Object.keys(data).map((key) => ({
@@ -59,6 +60,7 @@ function transformData(data) {
           }))
         : data;
 }
+
 http.interceptors.response.use(
     (res) => {
         if (configFile.isFireBase) {
@@ -75,7 +77,7 @@ http.interceptors.response.use(
 
         if (!expectedErrors) {
             console.log(error);
-            toast.error("Something was wrong. Try it later");
+            toast.error("Somthing was wrong. Try it later");
         }
         return Promise.reject(error);
     }

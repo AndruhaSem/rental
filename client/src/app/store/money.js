@@ -52,6 +52,7 @@ export const createMoney =
         };
         try {
             const { content } = await moneyService.createMoney(money);
+
             dispatch(moneyCreated(content));
         } catch (error) {
             dispatch(moneyRequestFailed(error.message));

@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Redirect, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getCurrentUserData } from "../../../store/users";
+import { getUsersList } from "../../../store/users";
 
 const ProtectedRouteJobs = ({ component: Component, children, ...rest }) => {
-    const currentUser = useSelector(getCurrentUserData());
+    const currentUser = useSelector(getUsersList());
     return (
         <Route
             {...rest}

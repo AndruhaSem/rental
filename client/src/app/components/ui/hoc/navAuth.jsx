@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { getCurrentUserData } from "../../../store/users";
+import { getUsersList } from "../../../store/users";
 
 const navAuth = (Component) => (props) => {
-    const currentUser = useSelector(getCurrentUserData());
+    const currentUser = useSelector(getUsersList());
     return (
         <>
             {!currentUser.isAdmin && !currentUser.isJobs ? (

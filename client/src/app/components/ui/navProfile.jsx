@@ -6,11 +6,11 @@ import NavBarIsUsersAdmin from "./hocNavBar/NavBarIsUsersAdmin";
 import NavBarIsUsersJobs from "./hocNavBar/NavBarIsUsersJobs";
 import NavBarIsUsers from "./hocNavBar/NavBarIsUsers";
 import { useSelector } from "react-redux";
-import { getCurrentUserData } from "../../store/users";
+import { getUsersList } from "../../store/users";
 
 const NavProfile = () => {
-    const currentUser = useSelector(getCurrentUserData());
-    console.log();
+    const currentUser = useSelector(getUsersList());
+
     const [isOpen, setOpen] = useState(false);
     function toggleMenu() {
         setOpen((prevState) => !prevState);
