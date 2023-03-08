@@ -56,6 +56,9 @@ const UserPage = () => {
                     <Link to="/money" className="div4 lo">
                         Деньги
                     </Link>
+                    <Link to="/logout" className="div4 lo">
+                        Врем Выход
+                    </Link>
                 </div>
             </div>
         </>
