@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getIsLoggedIn } from "../../store/users";
 import ButtonPersonalArea from "../common/table/buttonPersonalArea";
@@ -10,20 +10,20 @@ const NavMobile = () => {
 
     return (
         <div className="nav-mobile hide-desktop">
-            <Link to="/">
+            <NavLink exact to="/">
                 <i className="bi bi-house-fill"></i>
-            </Link>
+            </NavLink>
 
-            <Link to="/reservations">
+            <NavLink to="/reservations">
                 <i className="bi bi-clipboard2-minus-fill"></i>
-            </Link>
+            </NavLink>
 
             {isLoggedIn ? (
                 <ButtonPersonalArea />
             ) : (
-                <Link to="/login">
+                <NavLink to="/login">
                     <i className="bi bi-person-fill"></i>
-                </Link>
+                </NavLink>
             )}
         </div>
     );

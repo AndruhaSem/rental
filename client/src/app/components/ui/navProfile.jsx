@@ -1,41 +1,20 @@
-import React, { useState } from "react";
-import navAuthAdmin from "./hoc/navAuthAdmin";
-import navAuthJobs from "./hoc/navAuthJobs";
-import navAuth from "./hoc/navAuth";
-import NavBarIsUsersAdmin from "./hocNavBar/NavBarIsUsersAdmin";
-import NavBarIsUsersJobs from "./hocNavBar/NavBarIsUsersJobs";
-import NavBarIsUsers from "./hocNavBar/NavBarIsUsers";
+import React from "react";
+
 import { useSelector } from "react-redux";
 import { getUsersList } from "../../store/users";
+import { Link } from "react-router-dom";
 
 const NavProfile = () => {
     const currentUser = useSelector(getUsersList());
-
-    const [isOpen, setOpen] = useState(false);
-    function toggleMenu() {
-        setOpen((prevState) => !prevState);
-    }
-    const ComponentNavHocAdmin = navAuthAdmin(NavBarIsUsersAdmin);
-    const ComponentNavHocJobs = navAuthJobs(NavBarIsUsersJobs);
-    const ComponentNavHocUser = navAuth(NavBarIsUsers);
     if (!currentUser) return "loading@";
     return (
         <>
-            <div className="dropdown" onClick={toggleMenu}>
+            <Link className="dropdown" to="/lk">
                 <div className="btn dropdown-toggle d-flex align-items-center">
                     <div className="me-2">{currentUser.name}</div>
-                    <img
-                        src={currentUser.image}
-                        alt=""
-                        height="35"
-                        className="img-responsive rounded-circle"
-                    />
+                    <i className="bi bi-person-fill"></i>
                 </div>
-
-                <ComponentNavHocAdmin isOpen={isOpen} />
-                <ComponentNavHocJobs isOpen={isOpen} />
-                <ComponentNavHocUser isOpen={isOpen} />
-            </div>
+            </Link>
         </>
     );
 };

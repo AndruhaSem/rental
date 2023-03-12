@@ -12,7 +12,7 @@ import NumberProduct from "../../common/form/numberProduct";
 import TimeRental from "../../common/form/timeRental";
 import RadioFildPage from "../../common/form/radioFildPage";
 import TextField from "../../common/form/textField";
-import BackHistoryButton from "../../common/table/backButton";
+import NavBarLk from "../../ui/navBarLk";
 
 const StatisticPage = () => {
     const params = useParams();
@@ -120,7 +120,9 @@ const StatisticPage = () => {
 
     return (
         <>
-            <BackHistoryButton />
+            <div className="Personal-area_nav">
+                <NavBarLk />
+            </div>
             <div className="container mt-5">
                 <div className="row">
                     <div className="col-md-6 offset-md-3 shadow p-4">

@@ -25,9 +25,10 @@ function TableHeader({ columns, onSort, selectedSort }) {
     return (
         <thead className="tbl-header">
             <tr className="table100-head">
-                {Object.keys(columns).map((column) => (
+                {Object.keys(columns).map((column, ind) => (
                     <th
                         className="column3"
+                        id={`index-${ind + 1}`}
                         key={column}
                         onClick={() =>
                             columns[column].path

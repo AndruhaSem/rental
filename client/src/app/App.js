@@ -14,6 +14,8 @@ import User from "./layouts/user";
 import NotFound from "./layouts/notFound";
 import Home from "./layouts/home";
 import NavMobile from "./components/ui/navMobele";
+import Money from "./layouts/money";
+import PersonalArea from "./layouts/personalArea";
 
 function App() {
     return (
@@ -25,14 +27,22 @@ function App() {
                     <Switch>
                         <Route path="/" exact component={Home} />
                         <ProtectedRouteAdmin
-                            path="/statistic/:statisticId?"
+                            path="/lk/statistic/:statisticId?"
                             component={Statistics}
                         />
                         <Route path="/login/:type?" component={Login} />
                         <Route path="/reservations" component={Reservations} />
 
                         <Route path="/logout" component={LogOut} />
-                        <ProtectedRouteJobs path="/rental" component={Rental} />
+                        <ProtectedRouteJobs
+                            path="/lk/rental"
+                            component={Rental}
+                        />
+                        <ProtectedRouteAdmin
+                            path="/lk/money"
+                            component={Money}
+                        />
+                        <Route path="/lk/details" component={PersonalArea} />
                         <Route path="/:userId?" component={User} />
                         <Route path="/404" component={NotFound} />
                         <Redirect to="/404" />

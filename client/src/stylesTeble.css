@@ -1,4 +1,37 @@
+@media (max-width: 1024px) {
+    #index-2 {
+        display: none;
+    }
+    #index-3 {
+        display: none;
+    }
+}
+@media (max-width: 768px) {
+    #index-4 {
+        display: none;
+    }
+    #index-7 {
+        display: none;
+    }
+    #index-5 {
+        display: none;
+    }
+    #index-6 {
+        display: none;
+    }
+}
 @media (max-width: 425px) {
+    #index-11 {
+        display: none;
+    }
+}
+@media (max-width: 375px) {
+    #index-8 {
+        display: none;
+    }
+    #index-9 {
+        padding-left: 15px;
+    }
 }
 
 .tbl-container a {

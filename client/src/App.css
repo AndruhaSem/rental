@@ -101,13 +101,14 @@
     font-size: 28px;
     color: #cccccc;
 }
-.nav-mobile a:hover {
+
+.nav-mobile a.active {
     color: #000;
 }
 .header {
     display: flex;
     justify-content: space-between;
-    background: #000;
+    background: var(--nav-header-booking-color);
     box-shadow: 4px 6px 12px var(--nav-rgb-color);
     height: 62px;
     align-items: center;
@@ -177,6 +178,7 @@
     margin-top: 15px;
     margin-bottom: 15px;
     font-size: 26px;
+    color: var(--button-text-rental-color);
 }
 .img {
     width: 100%;
@@ -240,6 +242,23 @@
     width: 92%;
     padding: 20px;
 }
+.dropdown {
+    text-decoration: none;
+}
+.dropdown i {
+    font-size: 30px;
+    text-decoration: none;
+    color: var(--nav-text-color);
+}
+.dropdown-toggle {
+    margin-right: 30px;
+    display: flex;
+    align-items: center;
+}
+.me-2 {
+    margin-right: 12px;
+    color: var(--nav-text-color);
+}
 /*----------------------------*/
 
 .form-control:focus,
@@ -259,35 +278,6 @@
     background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
 }
 
-.nav-item.user {
-    cursor: pointer;
-    padding-bottom: 5px;
-}
-.user-icons {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: #fff;
-    border: 1px solid black;
-    margin-left: 10px;
-    float: right;
-    margin-bottom: 0px;
-    margin-top: -4px;
-}
-
-.register {
-    padding-left: 0;
-    margin-right: 65px;
-}
-.loging {
-    text-align: center;
-    margin-top: 100px;
-    font-size: 40px;
-    color: cadetblue;
-}
-.active {
-    display: flex;
-}
 .loading {
     display: flex;
     text-align: center;
@@ -297,11 +287,16 @@
     height: 100vh;
 }
 
+/*-------------------*/
+
 .admin-stat-money {
     padding-right: 10px;
-    width: 300px;
+    width: 100%;
     margin-top: 24px;
     padding-left: 15px;
+    display: flex;
+    justify-content: center;
+    color: var(--button-text-rental-color);
 }
 .float-l {
     float: left;
@@ -310,119 +305,4 @@
 .float-r {
     margin-left: 15px;
     float: right;
-}
-
-/* .modal {
-    display: none;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #000;
-    opacity: 0.6;
-}
-
-.modal.active {
-    display: flex;
-}
-
-.delete-modal {
-    background: var(--row-background-form-color);
-    padding: 20px;
-}
-
-.delete-modal__question {
-    font-size: 18px;
-    margin: 0;
-    color: var(--row-text-form-color);
-}
-.hr {
-    margin-bottom: 20px;
-}
-.delete-modal__button {
-    cursor: pointer;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    padding: 14px;
-    transition: 0.3s ease;
-    background-color: #ed6755;
-    width: 200px;
-    box-shadow: 0px 6px 18px -5px rgb(237 103 85);
-}
-
-.delete-modal {
-    z-index: 9999;
-    pointer-events: auto;
-    border-radius: 20px;
-    width: 23%;
-    padding: 20px;
-} */
-
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    margin-left: -285px;
-    background: var(--nav-background-color);
-    border: 1px solid rgba(0, 0, 0, 0.175);
-    border-radius: 0.375rem;
-}
-
-.dropdown-menu-user {
-    display: none;
-    position: absolute;
-    background: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.175);
-    border-radius: 0.375rem;
-    margin-left: 12px;
-}
-.dropdown-menu-jobs {
-    display: none;
-    position: absolute;
-    background: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.175);
-    border-radius: 0.375rem;
-    margin-left: 25px;
-}
-.dropdown-menu-user.show,
-.dropdown-menu-jobs.show,
-.dropdown-menu.show {
-    display: block;
-}
-.dropdown-menu .dropdown-item {
-    border-left: 1px solid rgba(0, 0, 0, 0.175);
-}
-
-.dropdown-toggle {
-    margin-right: 30px;
-    display: flex;
-    align-items: center;
-}
-.admin-form {
-    display: flex;
-}
-.dropdown-item {
-    display: block;
-    padding: 7px 10px 8px 10px;
-    text-decoration: none;
-    margin: 3px 0 3px 0px;
-    color: #000;
-}
-.dropdown-item:hover {
-    background: var(--nav-hoover-background-color);
-}
-.me-2 {
-    margin-right: 12px;
-    color: var(--nav-text-color);
 }

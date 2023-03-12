@@ -19,7 +19,7 @@ function UserTable({ statistic, onSort, selectedSort, onDelete }) {
             path: "_id",
             name: "Номер заказа",
             component: (stat, indx) => (
-                <Link to={`/statistic/${stat._id}`}>{indx + 1}</Link>
+                <Link to={`/lk/statistic/${stat._id}`}>{indx + 1}</Link>
             )
         },
         telephone: {

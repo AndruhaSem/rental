@@ -32,8 +32,8 @@
     align-items: center;
 }
 .slider {
-    border: 1px solid #dede;
-    background: #dede;
+    border: 1px solid var(--slider-background);
+    background: var(--slider-background);
     width: 940px;
     height: 390px;
     overflow: hidden;
@@ -80,13 +80,13 @@
     margin: 0;
 }
 .slider-text {
-    color: #111;
+    color: var(--row-text-form-color);
 }
 .logo-text {
-    color: #111;
+    color: var(--color-loading);
     margin: 10px 0 10px 0;
 }
 .bi-caret-right-fill,
 .bi-caret-left-fill {
-    color: #111;
+    color: var(--row-text-form-color);
 }

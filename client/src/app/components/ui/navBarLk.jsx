@@ -1,24 +1,34 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { getUsersList } from "../../store/users";
 
 const NavBarLk = () => {
+    const currentUSer = useSelector(getUsersList());
     return (
         <>
-            <Link className="active" to="/lk">
+            <NavLink exact to="/lk">
                 <i className="bi bi-house"></i>Главная
-            </Link>
-            <Link to="/lk/details">
+            </NavLink>
+            <NavLink to="/lk/details">
                 <i className="bi bi-person"></i>Профиль
-            </Link>
-            <Link to="/rental">
-                <i className="bi bi-clock"></i>Аренда
-            </Link>
-            <Link to="/statistic">
-                <i className="bi bi-clipboard2-data"></i>Статистика
-            </Link>
-            <Link to="/money">
-                <i className="bi bi-bank"></i>Деньги
-            </Link>
+            </NavLink>
+            {currentUSer.isAdmin || currentUSer.isJobs ? (
+                <NavLink to="/lk/rental">
+                    <i className="bi bi-clock"></i>Аренда
+                </NavLink>
+            ) : null}
+
+            {currentUSer.isAdmin ? (
+                <NavLink to="/lk/statistic">
+                    <i className="bi bi-clipboard2-data"></i>Статистика
+                </NavLink>
+            ) : null}
+            {currentUSer.isAdmin ? (
+                <NavLink to="/lk/money">
+                    <i className="bi bi-bank"></i>Деньги
+                </NavLink>
+            ) : null}
         </>
     );
 };

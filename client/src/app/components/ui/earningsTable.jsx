@@ -1,22 +1,12 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-    getMoney,
-    getMoneyLoadingStatus,
-    loadmoneyList
-} from "../../store/money";
+import React from "react";
+import { useSelector } from "react-redux";
+import { getMoney, getMoneyLoadingStatus } from "../../store/money";
 import { getUsersList } from "../../store/users";
 
 const EarningsTable = () => {
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(loadmoneyList());
-    }, []);
     const money = useSelector(getMoney());
     const isLoggedIn = useSelector(getMoneyLoadingStatus());
-
     const currentUser = useSelector(getUsersList());
-
     const priceDay = 1000;
     const priceHourr = 500;
     const priceHalfDay = 1500;

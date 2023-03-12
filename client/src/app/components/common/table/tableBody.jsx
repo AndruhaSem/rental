@@ -17,8 +17,12 @@ function TableBody({ columns, data }) {
         <tbody className="tbl-container">
             {data.map((item, indx) => (
                 <tr key={item._id}>
-                    {Object.keys(columns).map((column) => (
-                        <td key={column} className="column1">
+                    {Object.keys(columns).map((column, ind) => (
+                        <td
+                            key={column}
+                            className="column1"
+                            id={`index-${ind + 1}`}
+                        >
                             {renderContent(item, column, indx)}
                         </td>
                     ))}
