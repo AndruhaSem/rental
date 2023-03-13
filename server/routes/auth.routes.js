@@ -1,5 +1,5 @@
 const express = require("express");
-const User = require("../models/User");
+const db = require("../models/index");
 const bcrypt = require("bcryptjs");
 const { check, validationResult } = require("express-validator");
 const router = express.Router({ mergeParams: true });
@@ -22,7 +22,7 @@ router.post("/signUp", [
       }
 
       const { email, password } = req.body;
-      const exitingUser = await User.findOne({ email });
+      const exitingUser = await db.User.findOne({ where: { email: email } });
       if (exitingUser) {
         return res.status(400).json({
           error: {
@@ -32,17 +32,18 @@ router.post("/signUp", [
         });
       }
       const hashedPassword = await bcrypt.hash(password, 12);
-      const newUser = await User.create({
+      const newUser = await db.User.create({
         ...generateUserData(),
         ...req.body,
         password: hashedPassword,
       });
-      const tokens = tokenService.generate({ _id: newUser._id });
-      await tokenService.save(newUser._id, tokens.refreshToken);
-      res.status(201).send({ ...tokens, userId: newUser._id });
+      const tokens = tokenService.generate({ _id: newUser.id });
+      await tokenService.save(newUser.id, tokens.refreshToken);
+      res.status(201).send({ ...tokens, userId: newUser.id });
     } catch (e) {
       res.status(500).json({
-        message: "На сервере произошла ошибкаю Попробуйте позжк",
+        message: "На сервере произошла ошибка. Попробуйте позже",
+        error: e
       });
     }
   },
@@ -63,7 +64,7 @@ router.post("/signInWithPassword", [
       }
 
       const { email, password } = req.body;
-      const existingUser = await User.findOne({ email });
+      const existingUser = await db.User.findOne({ where: {email} });
       if (!existingUser) {
         return res.status(400).send({
           error: {
@@ -86,9 +87,9 @@ router.post("/signInWithPassword", [
         });
       }
 
-      const tokens = tokenService.generate({ _id: existingUser._id });
-      await tokenService.save(existingUser._id, tokens.refreshToken);
-      res.status(200).send({ ...tokens, userId: existingUser._id });
+      const tokens = tokenService.generate({ _id: existingUser.id });
+      await tokenService.save(existingUser.id, tokens.refreshToken);
+      res.status(200).send({ ...tokens, userId: existingUser.id });
     } catch (e) {
       res.status(500).json({
         message: "На сервере произошла ошибкаю Попробуйте позжк",

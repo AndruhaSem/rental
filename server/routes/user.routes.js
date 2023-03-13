@@ -1,15 +1,14 @@
 const express = require("express");
-const User = require("../models/User");
+const db = require("../models/index");
 const auth = require("../middleware/auth.middleware");
 const router = express.Router({ mergeParams: true });
 
 router.patch("/:userId", auth, async (req, res) => {
   try {
     const { userId } = req.params;
-    if (userId === req.user._id) {
-      const updatedUser = await User.findByIdAndUpdate(userId, req.body, {
-        new: true,
-      });
+    if (parseInt(userId) === parseInt(req.user._id)) {
+      // TODO
+      const updatedUser = await db.User.findByPk(userId);
       res.send(updatedUser);
     } else {
       res.status(401).json({ message: "Unauthorized" });
@@ -23,9 +22,14 @@ router.patch("/:userId", auth, async (req, res) => {
 router.get("/:userId", auth, async (req, res) => {
   const { userId } = req.params;
   try {
-    if (userId === req.user._id) {
-      const list = await User.findById(userId);
-      res.send(list);
+    if (parseInt(userId) === parseInt(req.user._id)) {
+      const user = await db.User.findByPk(userId);
+      res.send({
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        image: user.image,
+      });
     } else {
       res.status(401).json({ message: "Unauthorized" });
     }
