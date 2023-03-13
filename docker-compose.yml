@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  db:
+    build: .docker/mysql
+    container_name: rental-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    restart: unless-stopped
+    command: --init-file /data/application/init.sql
+    volumes:
+      - .docker/mysql/data:/var/lib/mysql
+      - .docker/mysql/init.sql:/data/application/init.sql
+    ports:
+      - "3306:3306"
