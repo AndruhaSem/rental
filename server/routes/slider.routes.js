@@ -1,10 +1,10 @@
 const express = require("express");
-const Slider = require("../models/Slider");
+const db = require("../models/index");
 const router = express.Router({ mergeParams: true });
 
 router.get("/", async (req, res) => {
   try {
-    const list = await Slider.find();
+    const list = await db.Slider.findAll();
     res.send(list);
   } catch (e) {
     res.status(500).json({
