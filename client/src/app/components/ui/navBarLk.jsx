@@ -13,18 +13,18 @@ const NavBarLk = () => {
             <NavLink to="/lk/details">
                 <i className="bi bi-person"></i>Профиль
             </NavLink>
-            {currentUSer.isAdmin || currentUSer.isJobs ? (
+            {currentUSer.is_admin || currentUSer.isJobs ? (
                 <NavLink to="/lk/rental">
                     <i className="bi bi-clock"></i>Аренда
                 </NavLink>
             ) : null}
 
-            {currentUSer.isAdmin ? (
+            {currentUSer.is_admin ? (
                 <NavLink to="/lk/statistic">
                     <i className="bi bi-clipboard2-data"></i>Статистика
                 </NavLink>
             ) : null}
-            {currentUSer.isAdmin ? (
+            {currentUSer.is_admin ? (
                 <NavLink to="/lk/money">
                     <i className="bi bi-bank"></i>Деньги
                 </NavLink>

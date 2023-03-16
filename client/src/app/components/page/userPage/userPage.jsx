@@ -50,17 +50,17 @@ const UserPage = () => {
                     <Link to="/lk/details" className="div1 lo">
                         Профиль
                     </Link>
-                    {currentUser.isAdmin || currentUser.isJobs ? (
+                    {currentUser.is_admin || currentUser.isJobs ? (
                         <Link to="/lk/rental" className="div2 lo">
                             Аренда
                         </Link>
                     ) : null}
-                    {currentUser.isAdmin ? (
+                    {currentUser.is_admin ? (
                         <Link to="/lk/statistic" className="div3 lo">
                             Статистика
                         </Link>
                     ) : null}
-                    {currentUser.isAdmin ? (
+                    {currentUser.is_admin ? (
                         <Link to="/lk/money" className="div4 lo">
                             <div className="money-container">
                                 <p className="money-text">Финансы:</p>

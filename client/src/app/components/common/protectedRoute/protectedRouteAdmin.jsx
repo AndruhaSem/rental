@@ -11,7 +11,7 @@ const ProtectedRouteAdmin = ({ component: Component, children, ...rest }) => {
         <Route
             {...rest}
             render={(props) => {
-                if (!currentUser || !currentUser.isAdmin) {
+                if (!currentUser || !currentUser.is_admin) {
                     return (
                         <Redirect
                             to={{

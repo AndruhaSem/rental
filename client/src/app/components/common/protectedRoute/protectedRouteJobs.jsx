@@ -10,10 +10,7 @@ const ProtectedRouteJobs = ({ component: Component, children, ...rest }) => {
         <Route
             {...rest}
             render={(props) => {
-                if (
-                    !currentUser ||
-                    (!currentUser.isJobs && !currentUser.isAdmin)
-                ) {
+                if (!currentUser || !currentUser.is_admin) {
                     return (
                         <Redirect
                             to={{

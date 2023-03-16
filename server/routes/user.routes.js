@@ -29,6 +29,7 @@ router.get("/:userId", auth, async (req, res) => {
         name: user.name,
         email: user.email,
         image: user.image,
+        is_admin: user.is_admin,
       });
     } else {
       res.status(401).json({ message: "Unauthorized" });
