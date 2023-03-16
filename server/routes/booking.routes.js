@@ -1,10 +1,10 @@
 const express = require("express");
-const Booking = require("../models/Bookin");
+const db = require("../models/index");
 const router = express.Router({ mergeParams: true });
 
 router.get("/", async (req, res) => {
   try {
-    const list = await Booking.find();
+    const list = await db.Booking.findAll();
     res.send(list);
   } catch (e) {
     res.status(500).json({
