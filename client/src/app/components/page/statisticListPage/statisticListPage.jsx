@@ -7,21 +7,22 @@ import PropTypes from "prop-types";
 import NavBarLk from "../../ui/navBarLk";
 import { useDispatch, useSelector } from "react-redux";
 import {
-    deleteStatistics,
+    deleteOrder,
     getStatistics,
-    getStatisticsLoadingStatus,
-    loadStatisticsList
-} from "../../../store/statistics";
+    getOrdersLoadingStatus,
+    loadOrdersList
+} from "../../../store/orders";
 
 function StatisticListPage() {
     const [currentPage, setCurrenPage] = useState(1);
     const pageSize = 10;
     const dispatch = useDispatch();
     const statistic = useSelector(getStatistics());
-    const isLoading = useSelector(getStatisticsLoadingStatus());
+    const isLoading = useSelector(getOrdersLoadingStatus());
     const [sortBy, setSortBy] = useState({ path: "id", order: "asc" });
+
     useEffect(() => {
-        dispatch(loadStatisticsList());
+        dispatch(loadOrdersList());
     }, []);
     function handleSort(item) {
         setSortBy(item);
@@ -31,7 +32,7 @@ function StatisticListPage() {
     };
 
     function handleDelete(userId) {
-        dispatch(deleteStatistics(userId));
+        dispatch(deleteOrder(userId));
     }
 
     const sortedStatistic = _.orderBy(statistic, [sortBy.path], [sortBy.order]);
@@ -42,7 +43,7 @@ function StatisticListPage() {
             setCurrenPage((prevState) => prevState - 1);
         }
     }, [statisticCrop.length]);
-    if (!isLoading && statistic.length > 0) {
+    if (!isLoading && statistic) {
         const count = statistic.length;
         return (
             <>

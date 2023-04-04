@@ -2,7 +2,7 @@ import React from "react";
 
 const ProductList = ({ products, toggleModal }) => {
     return products.map((product) => (
-        <div className="booking-product" key={product._id}>
+        <div className="booking-product" key={product.id}>
             <h1 className="booking-title">{product.product}</h1>
             <div className="booking-container">
                 <div className="booking-text">

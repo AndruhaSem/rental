@@ -1,15 +1,14 @@
 const express = require("express");
 const auth = require("../middleware/auth.middleware");
-const Statistic = require("../models/Statistics");
+const db = require("../models/index");
 const router = express.Router({ mergeParams: true });
-const { generateOrderNUmber } = require("../utils/helpers");
 
 router
   .route("/")
   .get(auth, async (req, res) => {
     try {
       const { orderBy, equalTo } = req.query;
-      const list = await Statistic.find({ [orderBy]: equalTo });
+      const list = await db.Order.findAll();
       res.send(list);
     } catch (e) {
       res.status(500).json({
@@ -19,10 +18,7 @@ router
   })
   .post(auth, async (req, res) => {
     try {
-      const newStatistic = await Statistic.create({
-        ...req.body,
-        orderNumber: generateOrderNUmber(),
-      });
+      const newStatistic = await db.Order.create({...req.body});
       res.status(201).send(newStatistic);
     } catch (e) {
       res.status(500).json({
@@ -31,10 +27,10 @@ router
     }
   });
 
-router.delete("/:statisticId", auth, async (req, res) => {
+router.delete("/:order_id", auth, async (req, res) => {
   try {
-    const { statisticId } = req.params;
-    const removedStatistic = await Statistic.findById(statisticId);
+    const { order_id } = req.params;
+    const removedStatistic = await db.Order.findByPk(order_id);
 
     await removedStatistic.remove();
     return res.send(null);
@@ -45,15 +41,16 @@ router.delete("/:statisticId", auth, async (req, res) => {
   }
 });
 
-router.patch("/:statisticId", auth, async (req, res) => {
+router.patch("/:order_id", auth, async (req, res) => {
   try {
-    const { statisticId } = req.params;
-    if (statisticId) {
-      const updatedUser = await Statistic.findByIdAndUpdate(
-        statisticId,
+    const { order_id } = req.params;
+    if (order_id) {
+      const updatedUser = await db.Order.update(
         req.body,
         {
-          new: true,
+          where: {
+            id: order_id,
+          }
         }
       );
       res.send(updatedUser);

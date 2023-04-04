@@ -42,16 +42,10 @@ export const loadmoneyList = () => async (dispatch) => {
 };
 
 export const createMoney =
-    ({ кentalСhoice, quantity, timeRental, payment }) =>
+    (data) =>
     async (dispatch) => {
-        const money = {
-            quantity,
-            timeRental,
-            payment,
-            кentalСhoice
-        };
         try {
-            const { content } = await moneyService.createMoney(money);
+            const { content } = await moneyService.createMoney(data);
 
             dispatch(moneyCreated(content));
         } catch (error) {

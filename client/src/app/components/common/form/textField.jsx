@@ -4,7 +4,10 @@ import PropTypes from "prop-types";
 const TextField = ({ label, type, name, value, onChange, error }) => {
     const [showPassword, setShowPassword] = useState(false);
     function handleChange({ target }) {
-        onChange({ name: target.name, value: target.value });
+        onChange({
+            name: target.name,
+            value: name === "phone" ? Number(target.value) : target.value
+        });
     }
     function getInputClasses() {
         return "form-control" + (error ? " is-invalid" : "");
@@ -51,7 +54,7 @@ TextField.propTypes = {
     label: PropTypes.string,
     type: PropTypes.string,
     name: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.any,
     onChange: PropTypes.func,
     error: PropTypes.string
 };

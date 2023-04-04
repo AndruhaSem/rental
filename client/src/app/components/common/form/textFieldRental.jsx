@@ -3,7 +3,10 @@ import PropTypes from "prop-types";
 
 const TextFieldRental = ({ label, type, name, value, onChange, error }) => {
     function handleChange({ target }) {
-        onChange({ name: target.name, value: target.value });
+        onChange({
+            name: target.name,
+            value: name === "phone" ? Number(target.value) : target.value
+        });
     }
     function getInputClasses() {
         return "form-control-rental" + (error ? " is-invalid" : "");
@@ -17,7 +20,7 @@ const TextFieldRental = ({ label, type, name, value, onChange, error }) => {
                 <input
                     type={type}
                     id={name}
-                    value={value}
+                    value={value || ""}
                     onChange={handleChange}
                     name={name}
                     className={getInputClasses()}
@@ -31,7 +34,7 @@ TextFieldRental.propTypes = {
     label: PropTypes.string,
     type: PropTypes.string,
     name: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.any,
     onChange: PropTypes.func,
     error: PropTypes.string
 };

@@ -6,7 +6,7 @@ const RadioFild = ({ options, name, onChange, label }) => {
         onChange({ name: target.name, value: target.value });
     }
     return (
-        <div className="rental-choice">
+        <div className="rental-choice_money">
             <label className="label">{label}</label>
             <div className="form-container-rental">
                 {options.map((option) => (
@@ -31,6 +31,7 @@ const RadioFild = ({ options, name, onChange, label }) => {
                     </div>
                 ))}
             </div>
+            {/* <div>{name === "deposit_type" ? <div className="testers"><input /></div> : null}</div> */}
         </div>
     );
 };

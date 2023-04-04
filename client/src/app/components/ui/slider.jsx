@@ -34,7 +34,7 @@ const Slider = ({
                 style={{ left: `${-offset}px` }}
             >
                 {sliders.map((s) => (
-                    <div className="item" key={s._id}>
+                    <div className="item" key={s.id}>
                         <img className="item-img" src={s.image} alt={s.title} />
                         <div className="content">
                             <p>{s.title}</p>

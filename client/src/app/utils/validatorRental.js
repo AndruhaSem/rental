@@ -2,7 +2,7 @@ export function validator(data, config) {
     const errors = {};
     function validate(validateMethod, data, config, status) {
         let statusValidate;
-        if (status.кentalСhoice === "Пляж") {
+        if (status.place === "Пляж") {
             switch (validateMethod) {
                 case "isRequiredPayment": {
                     statusValidate = data.trim() === "";
@@ -20,7 +20,10 @@ export function validator(data, config) {
                     statusValidate = data.trim() === "";
                     break;
                 }
-
+                 case "isRequiredPhome": {
+                    statusValidate = data === null;
+                    break;
+                }
                 default:
                     break;
             }

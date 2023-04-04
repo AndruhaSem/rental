@@ -67,6 +67,11 @@
     margin-top: 40px;
     margin-bottom: 35px;
 }
+.rental-choice_money{
+    align-items: center;
+    color: var(--label-text-rental-color);
+    margin-top: 40px;
+}
 .rental-choice-page {
     color: var(--row-text-form-color);
     margin-top: 40px;
@@ -201,8 +206,27 @@
     display: flex;
     justify-content: center;
 }
-
-.user-box input::-webkit-outer-spin-button,
-.user-box input::-webkit-inner-spin-button {
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    
     -webkit-appearance: none;
+}
+.input-money {
+    min-width: 250px;
+    margin-left: 15px;
+    padding: 0.3rem 0.75rem;
+    line-height: 1.5;
+    border-radius: 0.375rem;
+    border: 1px solid var(--input-border-rental-color);
+}
+.input-money:focus {
+    outline: 0;
+    
+}
+
+.deposit-money{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 35px;
+    margin-top: 15px;
 }

@@ -5,26 +5,26 @@ import { Link } from "react-router-dom";
 
 function UserTable({ statistic, onSort, selectedSort, onDelete }) {
     function addStartRental(time) {
-        const date = new Date(time);
+        const date = new Date(Date.parse(time));
         return `${date.getDate()}.${
             date.getMonth() + 1
         }.${date.getFullYear()}/${date.getHours()}:${date.getMinutes()}`;
     }
     function addEndRental(time, timeRental) {
-        const date = new Date(time + timeRental * 60 * 60 * 1000);
+        const date = new Date(Date.parse(time) + timeRental * 60 * 60 * 1000);
         return `${date.getHours()}:${date.getMinutes()}`;
     }
     const columns = {
         id: {
-            path: "_id",
+            path: "id",
             name: "Номер заказа",
-            component: (stat, indx) => (
-                <Link to={`/lk/statistic/${stat._id}`}>{indx + 1}</Link>
+            component: (stat) => (
+                <Link to={`/lk/statistic/${stat.id}`}>{stat.id}</Link>
             )
         },
         telephone: {
             name: "Телефон",
-            component: (stat) => stat.telephone
+            component: (stat) => (stat.phone ? stat.phone : "Телефон не указан")
         },
         name: {
             name: "Фамилия.И.О",
@@ -43,25 +43,26 @@ function UserTable({ statistic, onSort, selectedSort, onDelete }) {
             name: "Способ оплаты"
         },
         deposit: {
-            path: "deposit",
-            name: "Залог"
+            name: "Залог",
+            component: (stat) =>
+                stat.deposit_type ? stat.deposit_type : "Нет залога"
         },
         timeRental: {
             name: "Время аренды",
-            component: (stat) => stat.timeRental
+            component: (stat) => stat.time_rental
         },
         date: {
             name: "Начало аренды",
-            component: (stat) => addStartRental(stat.date)
+            component: (stat) => addStartRental(stat.createdAt)
         },
         newData: {
             name: "Время завершение",
-            component: (stat) => addEndRental(stat.date, stat.timeRental)
+            component: (stat) => addEndRental(stat.createdAt, stat.time_rental)
         },
         status: {
             component: (stat) => (
                 <button
-                    onClick={() => onDelete(stat._id)}
+                    onClick={() => onDelete(stat.id)}
                     className="button-delete"
                 >
                     delete

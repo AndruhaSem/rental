@@ -7,22 +7,23 @@ import TextFieldRental from "../components/common/form/textFieldRental";
 import { validator } from "../utils/validatorRental";
 import { useDispatch } from "react-redux";
 import { createMoney } from "../store/money";
-import { createStatistics } from "../store/statistics";
+import { createOrder } from "../store/orders";
 import NavBarLk from "../components/ui/navBarLk";
+import TextFieldMoney from "../components/common/form/textFieldMoney";
 
 function Rental() {
     const dispatch = useDispatch();
     const [data, setData] = useState({
-        кentalСhoice: "Пляж",
+        place: "Пляж",
         quantity: 1,
         payment: "",
-        deposit: "Нет залога",
+        deposit: null,
+        deposit_type: null,
         name: "User",
-        telephone: "Телефон не указан",
+        phone: null,
         product: "сапборд",
-        timeRental: 0.5
+        time_rental: 0.5
     });
-
     function handleIncrement(e) {
         if (e.target.className === "items__control") {
             setData((prevState) => ({
@@ -30,15 +31,15 @@ function Rental() {
                 quantity: prevState.quantity + 1
             }));
         } else {
-            if (data.кentalСhoice === "Пляж") {
+            if (data.place === "Пляж") {
                 setData((prevState) => ({
                     ...prevState,
-                    timeRental: prevState.timeRental + 0.5
+                    time_rental: prevState.time_rental + 0.5
                 }));
             } else {
                 setData((prevState) => ({
                     ...prevState,
-                    timeRental: (prevState.timeRental = 24)
+                    time_rental: (prevState.time_rental = 24)
                 }));
             }
         }
@@ -52,17 +53,17 @@ function Rental() {
                 }));
             }
         } else {
-            if (data.кentalСhoice === "Пляж") {
-                if (data.timeRental > 0.5) {
+            if (data.place === "Пляж") {
+                if (data.time_rental > 0.5) {
                     setData((prevState) => ({
                         ...prevState,
-                        timeRental: prevState.timeRental - 0.5
+                        time_rental: prevState.time_rental - 0.5
                     }));
                 }
             } else {
                 setData((prevState) => ({
                     ...prevState,
-                    timeRental: (prevState.timeRental = 12)
+                    time_rental: (prevState.time_rental = 12)
                 }));
             }
         }
@@ -74,16 +75,10 @@ function Rental() {
             [target.name]: target.value
         }));
     };
-
     const validatorConfig = {
         payment: {
             isRequiredPayment: {
                 message: "Выберете способ оплаты"
-            }
-        },
-        deposit: {
-            isRequired: {
-                message: "Выберете способ залога"
             }
         },
         name: {
@@ -91,9 +86,13 @@ function Rental() {
                 message: "Имя обязательно для заполнения"
             }
         },
-        telephone: {
-            isRequired: {
+        phone: {
+            isRequiredPhome: {
                 message: "Телефон обязательно для заполнения"
+            },
+            min: {
+                message: "Телефон должен состоять минимум из 11 символов",
+                value: 11
             }
         }
     };
@@ -101,27 +100,29 @@ function Rental() {
         if (e.target.value === "Помещение") {
             setData((prevState) => ({
                 ...prevState,
-                timeRental: 12
+                time_rental: 12
             }));
         } else {
             setData((prevState) => ({
                 ...prevState,
-                timeRental: 0.5,
-                deposit: "Нет залога",
-                telephone: "Телефон не указан"
+                time_rental: 0.5,
+                deposit: null,
+                deposit_type: null,
+                phone: null
             }));
         }
     }
     function apdateData() {
         setData({
-            кentalСhoice: "Пляж",
+            place: "Пляж",
             quantity: 1,
             payment: "",
-            deposit: "Нет залога",
+            deposit: null,
+            deposit_type: null,
             name: "User",
-            telephone: "Телефон не указан",
+            phone: null,
             product: "сапборд",
-            timeRental: 0.5
+            time_rental: 0.5
         });
     }
     useEffect(() => {
@@ -141,7 +142,7 @@ function Rental() {
         console.log(data);
         apdateData();
         dispatch(createMoney(data));
-        dispatch(createStatistics(data));
+        dispatch(createOrder(data));
     };
 
     return (
@@ -162,8 +163,8 @@ function Rental() {
                                     func: goBack
                                 }
                             ]}
-                            value={data.кentalСhoice}
-                            name="кentalСhoice"
+                            value={data.place}
+                            name="place"
                             onChange={handleChange}
                         />
                         <NumberProduct
@@ -173,8 +174,8 @@ function Rental() {
                             label="Количество"
                         />
                         <TimeRental
-                            index={data.кentalСhoice}
-                            hour={data.timeRental}
+                            index={data.place}
+                            hour={data.time_rental}
                             handleIncrement={handleIncrement}
                             handleDecrement={handleDecrement}
                             label="Время"
@@ -192,18 +193,28 @@ function Rental() {
                     <div
                         className={
                             "container-info__client " +
-                            (data.кentalСhoice === "Помещение" ? "active" : "")
+                            (data.place === "Помещение" ? "active" : "")
                         }
                     >
                         <RadioFild
                             options={[
-                                { name: "Документы", value: "Документы" },
-                                { name: "Наличка", value: "Наличка" }
+                                { name: "Документы", value: "document" },
+                                { name: "Наличка", value: "money" }
                             ]}
-                            name="deposit"
+                            name="deposit_type"
                             onChange={handleChange}
                             label="Залог"
                         />
+                        <div className="deposit-money">
+                            {data.deposit_type === "money" ? (
+                                <TextFieldMoney
+                                    name="deposit"
+                                    type="number"
+                                    value={data.deposit}
+                                    onChange={handleChange}
+                                />
+                            ) : null}
+                        </div>
                         <label className="rental-label">
                             Данные покупателя
                         </label>
@@ -218,11 +229,11 @@ function Rental() {
                             />
                             <TextFieldRental
                                 label="Телефон"
-                                name="telephone"
-                                type="text"
-                                value={data.telephone}
+                                name="phone"
+                                type="number"
+                                value={data.phone}
                                 onChange={handleChange}
-                                error={errors.telephone}
+                                error={errors.phone}
                             />
                         </div>
                     </div>

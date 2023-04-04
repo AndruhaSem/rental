@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
-const Money = require("../models/Money");
+const db = require("../models/index");
 const auth = require("../middleware/auth.middleware");
 
 router
   .route("/")
   .get(auth, async (req, res) => {
     try {
-      const list = await Money.find();
+      const list = await db.Money.findAll();
       res.send(list);
     } catch (e) {
       res.status(500).json({
@@ -17,7 +17,7 @@ router
   })
   .post(auth, async (req, res) => {
     try {
-      const newMoney = await Money.create({
+      const newMoney = await db.Money.create({
         ...req.body,
       });
       res.status(201).send(newMoney);

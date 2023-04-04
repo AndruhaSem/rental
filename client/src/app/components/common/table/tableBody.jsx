@@ -3,11 +3,11 @@ import _ from "lodash";
 import PropTypes from "prop-types";
 
 function TableBody({ columns, data }) {
-    function renderContent(item, column, indx) {
+    function renderContent(item, column) {
         if (columns[column].component) {
             const component = columns[column].component;
             if (typeof component === "function") {
-                return component(item, indx);
+                return component(item);
             }
             return component;
         }
@@ -16,14 +16,14 @@ function TableBody({ columns, data }) {
     return (
         <tbody className="tbl-container">
             {data.map((item, indx) => (
-                <tr key={item._id}>
+                <tr key={item.id}>
                     {Object.keys(columns).map((column, ind) => (
                         <td
                             key={column}
                             className="column1"
                             id={`index-${ind + 1}`}
                         >
-                            {renderContent(item, column, indx)}
+                            {renderContent(item, column)}
                         </td>
                     ))}
                 </tr>

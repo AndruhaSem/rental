@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import {
-    getStatisticsById,
-    getStatisticsLoadingStatus,
-    updateStatistic
-} from "../../../store/statistics";
+    getOrdersById,
+    getOrdersLoadingStatus,
+    updateOrder,
+    loadOrdersList
+} from "../../../store/orders";
 
 import { validator } from "../../../utils/validator";
 import NumberProduct from "../../common/form/numberProduct";
@@ -13,6 +14,7 @@ import TimeRental from "../../common/form/timeRental";
 import RadioFildPage from "../../common/form/radioFildPage";
 import TextField from "../../common/form/textField";
 import NavBarLk from "../../ui/navBarLk";
+import TextFieldMoney from "../../common/form/textFieldMoney";
 
 const StatisticPage = () => {
     const params = useParams();
@@ -21,8 +23,11 @@ const StatisticPage = () => {
     const [errors, setErrors] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const { statisticId } = params;
-    const currentUser = useSelector(getStatisticsById(statisticId));
-    const statisticLoading = useSelector(getStatisticsLoadingStatus());
+    const currentUser = useSelector(getOrdersById(Number(statisticId)));
+    const statisticLoading = useSelector(getOrdersLoadingStatus());
+    useEffect(() => {
+        dispatch(loadOrdersList());
+    }, []);
 
     const validatorConfig = {
         name: {
@@ -44,15 +49,15 @@ const StatisticPage = () => {
                 quantity: prevState.quantity + 1
             }));
         } else {
-            if (data.кentalСhoice === "Пляж") {
+            if (data.place === "Пляж") {
                 setData((prevState) => ({
                     ...prevState,
-                    timeRental: prevState.timeRental + 0.5
+                    time_rental: prevState.time_rental + 0.5
                 }));
             } else {
                 setData((prevState) => ({
                     ...prevState,
-                    timeRental: (prevState.timeRental = 24)
+                    time_rental: (prevState.time_rental = 24)
                 }));
             }
         }
@@ -66,21 +71,22 @@ const StatisticPage = () => {
                 }));
             }
         } else {
-            if (data.кentalСhoice === "Пляж") {
-                if (data.timeRental > 0.5) {
+            if (data.place === "Пляж") {
+                if (data.time_rental > 0.5) {
                     setData((prevState) => ({
                         ...prevState,
-                        timeRental: prevState.timeRental - 0.5
+                        time_rental: prevState.time_rental - 0.5
                     }));
                 }
             } else {
                 setData((prevState) => ({
                     ...prevState,
-                    timeRental: (prevState.timeRental = 12)
+                    time_rental: (prevState.time_rental = 12)
                 }));
             }
         }
     }
+    console.log(data);
     const validate = () => {
         const errors = validator(data, validatorConfig);
         setErrors(errors);
@@ -115,9 +121,8 @@ const StatisticPage = () => {
         e.preventDefault();
         const isValid = validate();
         if (!isValid) return;
-        dispatch(updateStatistic(data));
+        dispatch(updateOrder(data));
     }
-
     return (
         <>
             <div className="Personal-area_nav">
@@ -136,8 +141,8 @@ const StatisticPage = () => {
                                     color={true}
                                 />
                                 <TimeRental
-                                    index={data.кentalСhoice}
-                                    hour={data.timeRental}
+                                    index={data.place}
+                                    hour={data.time_rental}
                                     handleIncrement={handleIncrement}
                                     handleDecrement={handleDecrement}
                                     label="Время"
@@ -157,15 +162,25 @@ const StatisticPage = () => {
                                     options={[
                                         {
                                             name: "Документы",
-                                            value: "Документы"
+                                            value: "document"
                                         },
-                                        { name: "Наличка", value: "Наличка" }
+                                        { name: "Наличка", value: "money" }
                                     ]}
-                                    value={data.deposit}
-                                    name="deposit"
+                                    value={data.deposit_type}
+                                    name="deposit_type"
                                     onChange={handleChange}
                                     label="Залог"
                                 />
+                                <div className="deposit-money">
+                                    {data.deposit_type === "money" ? (
+                                        <TextFieldMoney
+                                            name="deposit"
+                                            type="number"
+                                            value={data.deposit}
+                                            onChange={handleChange}
+                                        />
+                                    ) : null}
+                                </div>
                                 <TextField
                                     label="И.Ф.О"
                                     name="name"
@@ -176,11 +191,11 @@ const StatisticPage = () => {
                                 />
                                 <TextField
                                     label="Телефон"
-                                    name="telephone"
-                                    type="text"
-                                    value={data.telephone}
+                                    name="phone"
+                                    type="number"
+                                    value={data.phone || ""}
                                     onChange={handleChange}
-                                    error={errors.telephone}
+                                    error={errors.phone}
                                 />
 
                                 <button
@@ -192,7 +207,7 @@ const StatisticPage = () => {
                                 </button>
                             </form>
                         ) : (
-                            "Loading..."
+                            "Loadingg..."
                         )}
                     </div>
                 </div>
