@@ -30,13 +30,16 @@ router
 router.delete("/:order_id", auth, async (req, res) => {
   try {
     const { order_id } = req.params;
-    const removedStatistic = await db.Order.findByPk(order_id);
-
-    await removedStatistic.remove();
-    return res.send(null);
+    console.log(order_id)
+    await db.Order.destroy({
+      where: {
+        id: order_id
+      }
+    });
+    return res.send({success: true});
   } catch (e) {
     res.status(500).json({
-      message: "На сервере произошла ошибкаю Попробуйте позжк",
+      message: e,
     });
   }
 });

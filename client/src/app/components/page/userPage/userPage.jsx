@@ -21,14 +21,14 @@ const UserPage = () => {
         let number = 0;
 
         for (const priceHour in mon) {
-            if (mon[priceHour].timeRental === 12) {
+            if (mon[priceHour].time_rental === 12) {
                 number += mon[priceHour].quantity * priceHalfDay;
-            } else if (mon[priceHour].timeRental === 24) {
+            } else if (mon[priceHour].time_rental === 24) {
                 number += mon[priceHour].quantity * priceDay;
             } else {
                 number +=
                     mon[priceHour].quantity *
-                    mon[priceHour].timeRental *
+                    mon[priceHour].time_rental *
                     priceHourr *
                     2;
             }
@@ -36,7 +36,7 @@ const UserPage = () => {
 
         return (
             (number / 100) *
-            ((Number(currentUser.fraction) * 100) / 6).toFixed(0)
+            ((Number(currentUser.products_count) * 100) / 6).toFixed(0)
         );
     }
 

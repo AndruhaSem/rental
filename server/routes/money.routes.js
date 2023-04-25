@@ -2,13 +2,18 @@ const express = require("express");
 const router = express.Router({ mergeParams: true });
 const db = require("../models/index");
 const auth = require("../middleware/auth.middleware");
+const orderRepository = require("../repositories/orderRepository");
 
 router
   .route("/")
   .get(auth, async (req, res) => {
     try {
-      const list = await db.Money.findAll();
-      res.send(list);
+      res.send({
+        total: parseInt(await orderRepository.calculateTotalSum()),
+        cash_total: parseInt(await orderRepository.calculateTotalSumByPayment('Наличные')),
+        card_total: parseInt(await orderRepository.calculateTotalSumByPayment('Перевод')),
+        user_total: 0,
+      });
     } catch (e) {
       res.status(500).json({
         message: "На сервере произошла ошибкаю Попробуйте позжк",

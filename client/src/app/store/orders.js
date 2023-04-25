@@ -63,16 +63,15 @@ export const loadOrdersList = () => async (dispatch) => {
 
 export const deleteOrder = (userId) => async (dispatch) => {
     try {
-        const { content } = await orderService.removeOrder(userId);
-        if (!content) {
-            dispatch(ordersRemove(userId));
-        }
+        await orderService.removeOrder(userId);
+        dispatch(ordersRemove(userId));
     } catch (error) {
         dispatch(ordersRequestFailed(error.message));
     }
 };
 
 export const createOrder = (data) => async (dispatch) => {
+    console.log(data);
     try {
         const { content } = await orderService.createOrder(data);
         dispatch(ordersCreated(content));
@@ -85,7 +84,7 @@ export const updateOrder = (payload) => async (dispatch) => {
     try {
         const { content } = await orderService.updateOrder(payload);
         dispatch(ordersUpdateSuccessed(content));
-        history.push("/statistic");
+        history.push("/lk/statistic");
     } catch (error) {
         dispatch(ordersRequestFailed(error.message));
     }

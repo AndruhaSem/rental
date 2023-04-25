@@ -10,6 +10,7 @@ import { createMoney } from "../store/money";
 import { createOrder } from "../store/orders";
 import NavBarLk from "../components/ui/navBarLk";
 import TextFieldMoney from "../components/common/form/textFieldMoney";
+import TextFieldTotalPrice from "../components/common/form/textFieldTotalPrice";
 
 function Rental() {
     const dispatch = useDispatch();
@@ -17,12 +18,13 @@ function Rental() {
         place: "Пляж",
         quantity: 1,
         payment: "",
-        deposit: null,
+        deposit: 0,
         deposit_type: null,
         name: "User",
         phone: null,
         product: "сапборд",
-        time_rental: 0.5
+        time_rental: 0.5,
+        total_price: ""
     });
     function handleIncrement(e) {
         if (e.target.className === "items__control") {
@@ -94,21 +96,29 @@ function Rental() {
                 message: "Телефон должен состоять минимум из 11 символов",
                 value: 11
             }
+        },
+        total_price: {
+            price: {
+                message: "Заполни поле",
+                value: 3
+            }
         }
     };
     function goBack(e) {
         if (e.target.value === "Помещение") {
             setData((prevState) => ({
                 ...prevState,
-                time_rental: 12
+                time_rental: 12,
+                total_price: 0
             }));
         } else {
             setData((prevState) => ({
                 ...prevState,
                 time_rental: 0.5,
-                deposit: null,
+                deposit: 0,
                 deposit_type: null,
-                phone: null
+                phone: null,
+                total_price: 0
             }));
         }
     }
@@ -117,12 +127,13 @@ function Rental() {
             place: "Пляж",
             quantity: 1,
             payment: "",
-            deposit: null,
+            deposit: 0,
             deposit_type: null,
             name: "User",
             phone: null,
             product: "сапборд",
-            time_rental: 0.5
+            time_rental: 0.5,
+            total_price: 0
         });
     }
     useEffect(() => {
@@ -144,7 +155,7 @@ function Rental() {
         dispatch(createMoney(data));
         dispatch(createOrder(data));
     };
-
+    console.log(errors);
     return (
         <>
             <div className="Personal-area_nav">
@@ -179,6 +190,13 @@ function Rental() {
                             handleIncrement={handleIncrement}
                             handleDecrement={handleDecrement}
                             label="Время"
+                        />
+                        <TextFieldTotalPrice
+                            name="total_price"
+                            type="number"
+                            value={data.total_price}
+                            onChange={handleChange}
+                            label="Цена"
                         />
                         <RadioFild
                             options={[

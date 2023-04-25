@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 
 const TextFieldMoney = ({ type, name, value, onChange }) => {
     function handleChange({ target }) {
-        onChange({ name: target.name, value: Number(target.value) });
+        onChange({ name: target.name, value: target.value });
     }
 
     return (
         <div>
             <input
                 className="input-money"
-                value={value || ""}
+                placeholder={value}
                 name={name}
                 id={name}
                 onChange={handleChange}

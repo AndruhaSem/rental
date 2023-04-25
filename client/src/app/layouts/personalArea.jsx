@@ -4,6 +4,7 @@ import NavBarLk from "../components/ui/navBarLk";
 import { getUsersList } from "../store/users";
 import { useDarkMode } from "../hooks/useTheme";
 import { Link } from "react-router-dom";
+import ProductCount from "./ProductCount";
 
 const PersonalArea = () => {
     const currentUser = useSelector(getUsersList());
@@ -64,9 +65,12 @@ const PersonalArea = () => {
                             checked={activ}
                         />
                     </div>
-                    <Link to="/logout" className="name">
+                    <Link to="/logout" className="logout">
                         <span className="exit">Выход</span>
                     </Link>
+                    <div className="products_count">
+                        <ProductCount />
+                    </div>
                 </div>
             </div>
         </>

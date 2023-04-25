@@ -8,6 +8,10 @@ export function validator(data, config) {
                     statusValidate = data.trim() === "";
                     break;
                 }
+                case "price": {
+                    statusValidate = Number(data.length) < config.value;
+                break;
+                }
             }
             if (statusValidate) return config.message;
         } else {

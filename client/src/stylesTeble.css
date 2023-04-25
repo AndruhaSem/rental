@@ -112,6 +112,7 @@ th i {
 .flex-pagination {
     display: flex;
     justify-content: center;
+    margin-top: 10px;
 }
 .page-link {
     padding: 0.375rem 0.75rem;

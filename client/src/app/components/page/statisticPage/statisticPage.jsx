@@ -15,6 +15,7 @@ import RadioFildPage from "../../common/form/radioFildPage";
 import TextField from "../../common/form/textField";
 import NavBarLk from "../../ui/navBarLk";
 import TextFieldMoney from "../../common/form/textFieldMoney";
+import TextFieldTotalPrice from "../../common/form/textFieldTotalPrice";
 
 const StatisticPage = () => {
     const params = useParams();
@@ -86,7 +87,6 @@ const StatisticPage = () => {
             }
         }
     }
-    console.log(data);
     const validate = () => {
         const errors = validator(data, validatorConfig);
         setErrors(errors);
@@ -146,6 +146,14 @@ const StatisticPage = () => {
                                     handleIncrement={handleIncrement}
                                     handleDecrement={handleDecrement}
                                     label="Время"
+                                    color={true}
+                                />
+                                <TextFieldTotalPrice
+                                    name="total_price"
+                                    type="number"
+                                    value={data.total_price}
+                                    onChange={handleChange}
+                                    label="Цена"
                                     color={true}
                                 />
                                 <RadioFildPage
