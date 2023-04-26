@@ -10,8 +10,8 @@ router
     try {
       res.send({
         total: parseInt(await orderRepository.calculateTotalSum()),
-        cash_total: parseInt(await orderRepository.calculateTotalSumByPayment('Наличные')),
-        card_total: parseInt(await orderRepository.calculateTotalSumByPayment('Перевод')),
+        cash_total: parseInt(await orderRepository.calculateTotalSumByPayment('cash')),
+        card_total: parseInt(await orderRepository.calculateTotalSumByPayment('card')),
         user_total: 0,
       });
     } catch (e) {

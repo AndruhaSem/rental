@@ -24,7 +24,7 @@ function Rental() {
         phone: null,
         product: "сапборд",
         time_rental: 0.5,
-        total_price: ""
+        total_price: null
     });
     function handleIncrement(e) {
         if (e.target.className === "items__control") {
@@ -109,7 +109,7 @@ function Rental() {
             setData((prevState) => ({
                 ...prevState,
                 time_rental: 12,
-                total_price: 0
+                total_price: null
             }));
         } else {
             setData((prevState) => ({
@@ -118,7 +118,7 @@ function Rental() {
                 deposit: 0,
                 deposit_type: null,
                 phone: null,
-                total_price: 0
+                total_price: null
             }));
         }
     }
@@ -133,9 +133,10 @@ function Rental() {
             phone: null,
             product: "сапборд",
             time_rental: 0.5,
-            total_price: 0
+            total_price: null
         });
     }
+    console.log(data);
     useEffect(() => {
         validate();
     }, [data]);
@@ -200,8 +201,8 @@ function Rental() {
                         />
                         <RadioFild
                             options={[
-                                { name: "Наличные", value: "Наличные" },
-                                { name: "Перевод", value: "Перевод" }
+                                { name: "Наличные", value: "cash" },
+                                { name: "Перевод", value: "card" }
                             ]}
                             name="payment"
                             onChange={handleChange}

@@ -6,9 +6,6 @@ import { getUsersList } from "../../../store/users";
 import { getMoney, loadmoneyList } from "../../../store/money";
 
 const UserPage = () => {
-    const priceDay = 1000;
-    const priceHourr = 500;
-    const priceHalfDay = 1500;
     const currentUser = useSelector(getUsersList());
     const money = useSelector(getMoney());
     const dispatch = useDispatch();
@@ -16,29 +13,6 @@ const UserPage = () => {
     useEffect(() => {
         dispatch(loadmoneyList());
     }, []);
-
-    function personalZarobotok(mon) {
-        let number = 0;
-
-        for (const priceHour in mon) {
-            if (mon[priceHour].time_rental === 12) {
-                number += mon[priceHour].quantity * priceHalfDay;
-            } else if (mon[priceHour].time_rental === 24) {
-                number += mon[priceHour].quantity * priceDay;
-            } else {
-                number +=
-                    mon[priceHour].quantity *
-                    mon[priceHour].time_rental *
-                    priceHourr *
-                    2;
-            }
-        }
-
-        return (
-            (number / 100) *
-            ((Number(currentUser.products_count) * 100) / 6).toFixed(0)
-        );
-    }
 
     return (
         <>
@@ -65,7 +39,7 @@ const UserPage = () => {
                             <div className="money-container">
                                 <p className="money-text">Финансы:</p>
                                 <div className="money">
-                                    {personalZarobotok(money) + " ₽"}
+                                    {money.total + " ₽"}
                                 </div>
                             </div>
                         </Link>
