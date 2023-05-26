@@ -12,7 +12,7 @@ router
         total: parseInt(await orderRepository.calculateTotalSum()),
         cash_total: parseInt(await orderRepository.calculateTotalSumByPayment('cash')),
         card_total: parseInt(await orderRepository.calculateTotalSumByPayment('card')),
-        user_total: 10,
+        user_total: parseFloat(await orderRepository.calculateTotalByUserId(req.user._id)),
       });
     } catch (e) {
       res.status(500).json({
