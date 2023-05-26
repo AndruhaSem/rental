@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import TextField from "../common/form/textField";
+import TextField from "../common/form/textFieldModal";
 import { validator } from "../../utils/validator";
 import { messageTg } from "../../utils/messageTg";
 import PropTypes from "prop-types";

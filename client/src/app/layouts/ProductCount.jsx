@@ -10,13 +10,13 @@ const ProductCount = () => {
     const dispatch = useDispatch();
     const [data, setData] = useState();
     const [isLoading, setIsLoading] = useState(true);
-    const statisticUser = useSelector(getUsersLoadingStatus());
-    const currentUser = useSelector(getCurrentUserData());
+    const isLoadingUser = useSelector(getUsersLoadingStatus());
+    const user = useSelector(getCurrentUserData());
     useEffect(() => {
-        if (currentUser && !data) {
-            setData({ ...currentUser });
+        if (user && !data) {
+            setData({ ...user });
         }
-    }, [currentUser, data]);
+    }, [user, data]);
 
     useEffect(() => {
         if (data && isLoading) {
@@ -38,7 +38,7 @@ const ProductCount = () => {
 
     return (
         <div>
-            {!isLoading && !statisticUser ? (
+            {!isLoading && !isLoadingUser ? (
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4">
                         <label

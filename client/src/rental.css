@@ -16,6 +16,14 @@
         align-items: center !important;
     }
 }
+@media (max-width: 426px) {
+    .rental-choice_money {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
 
 .containerr {
     background: var(--background-rental-color);

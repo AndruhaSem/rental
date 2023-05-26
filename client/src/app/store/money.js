@@ -20,15 +20,12 @@ const moneySlice = createSlice({
         moneyRequestFailed: (state, action) => {
             state.error = action.payload;
             state.isLoading = false;
-        },
-        moneyCreated: (state, action) => {
-            state.entities.push(action.payload);
         }
     }
 });
 
 const { reducer: moneyReducer, actions } = moneySlice;
-const { moneyRequested, moneyReceived, moneyRequestFailed, moneyCreated } =
+const { moneyRequested, moneyReceived, moneyRequestFailed } =
     actions;
 
 export const loadmoneyList = () => async (dispatch) => {
@@ -40,18 +37,6 @@ export const loadmoneyList = () => async (dispatch) => {
         dispatch(moneyRequestFailed(error.message));
     }
 };
-
-export const createMoney =
-    (data) =>
-    async (dispatch) => {
-        try {
-            const { content } = await moneyService.createMoney(data);
-
-            dispatch(moneyCreated(content));
-        } catch (error) {
-            dispatch(moneyRequestFailed(error.message));
-        }
-    };
 
 export const getMoney = () => (state) => state.money.entities;
 export const getMoneyLoadingStatus = () => (state) => state.money.isLoading;

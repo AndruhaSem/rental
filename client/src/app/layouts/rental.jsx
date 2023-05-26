@@ -6,7 +6,6 @@ import RadioFild from "../components/common/form/radioFild";
 import TextFieldRental from "../components/common/form/textFieldRental";
 import { validator } from "../utils/validatorRental";
 import { useDispatch } from "react-redux";
-import { createMoney } from "../store/money";
 import { createOrder } from "../store/orders";
 import NavBarLk from "../components/ui/navBarLk";
 import TextFieldMoney from "../components/common/form/textFieldMoney";
@@ -136,7 +135,6 @@ function Rental() {
             total_price: null
         });
     }
-    console.log(data);
     useEffect(() => {
         validate();
     }, [data]);
@@ -150,10 +148,7 @@ function Rental() {
         e.preventDefault();
         const isValid = validate();
         if (!isValid) return;
-
-        console.log(data);
         apdateData();
-        dispatch(createMoney(data));
         dispatch(createOrder(data));
     };
     console.log(errors);

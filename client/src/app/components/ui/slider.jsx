@@ -7,10 +7,11 @@ const Slider = ({
     handleClickLeft,
     handleClickRight,
     handleTouchStart,
-    handleTouchMove
+    handleTouchMove,
+    widthRef
 }) => {
     return (
-        <div className="slider">
+        <div ref={widthRef} className="slider">
             <div className="block-information-sliders">
                 <div className="information-text">
                     <p className="slider-text">Товары</p>
@@ -51,7 +52,8 @@ Slider.propTypes = {
     handleClickLeft: PropTypes.func,
     handleClickRight: PropTypes.func,
     handleTouchStart: PropTypes.func,
-    handleTouchMove: PropTypes.func
+    handleTouchMove: PropTypes.func,
+    widthRef: PropTypes.object
 };
 
 export default Slider;

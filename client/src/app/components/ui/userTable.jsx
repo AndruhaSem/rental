@@ -39,8 +39,9 @@ function UserTable({ statistic, onSort, selectedSort, onDelete }) {
             name: "колличество товара"
         },
         payment: {
-            path: "payment",
-            name: "Способ оплаты"
+            name: "Способ оплаты",
+            component: (stat) =>
+                stat.payment === "cash" ? "Наличка" : "Перевод"
         },
         deposit: {
             name: "Залог",

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import ProductCount from "./ProductCount";
 
 const PersonalArea = () => {
-    const currentUser = useSelector(getUsersList());
+    const user = useSelector(getUsersList());
     const [activ, setActiv] = useState(
         localStorage.getItem("app-theme") === "dark"
     );
@@ -34,20 +34,18 @@ const PersonalArea = () => {
                         <div className="block-info_area">
                             <div className="background-image">
                                 <img
-                                    src={currentUser.image}
+                                    src={user.image}
                                     alt="photo"
                                     height="60px"
                                 />
                             </div>
-                            <span className="personal-name">
-                                {currentUser.name}
-                            </span>
+                            <span className="personal-name">{user.name}</span>
                         </div>
                         <ul>
                             <li>
                                 <h3 className="title-personal">Email</h3>
                                 <div className="info-client">
-                                    <p>{currentUser.email}</p>
+                                    <p>{user.email}</p>
                                     <button>
                                         <i className="bi bi-pencil-fill"></i>
                                     </button>
@@ -65,12 +63,15 @@ const PersonalArea = () => {
                             checked={activ}
                         />
                     </div>
-                    <Link to="/logout" className="logout">
-                        <span className="exit">Выход</span>
-                    </Link>
                     <div className="products_count">
                         <ProductCount />
                     </div>
+                    <Link to="/logout" className="logout">
+                        <span className="exit">Выход</span>
+                    </Link>
+                    <Link to="/admin" className="admin">
+                        <span className="exit">Админка</span>
+                    </Link>
                 </div>
             </div>
         </>

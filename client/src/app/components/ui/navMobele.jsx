@@ -6,7 +6,6 @@ import ButtonPersonalArea from "../common/table/buttonPersonalArea";
 
 const NavMobile = () => {
     const isLoggedIn = useSelector(getIsLoggedIn());
-    // const userId = useSelector(getCurrentUserId());
 
     return (
         <div className="nav-mobile hide-desktop">

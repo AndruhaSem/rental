@@ -22,13 +22,13 @@ const EarningsTable = () => {
                         <td className="float-r">{money.card_total}</td>
                     </tr>
                     <tr>
-                        <td className="float-l">Личный зароботок : </td>
+                        <td className="float-l">Личный зарaбoток : </td>
                         <td className="float-r">{money.user_total}</td>
                     </tr>
                 </tbody>
             </table>
         );
     }
-    return "LOD";
+    return "loading...";
 };
 export default EarningsTable;

@@ -24,7 +24,7 @@ const StatisticPage = () => {
     const [errors, setErrors] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const { statisticId } = params;
-    const currentUser = useSelector(getOrdersById(Number(statisticId)));
+    const statistic = useSelector(getOrdersById(Number(statisticId)));
     const statisticLoading = useSelector(getOrdersLoadingStatus());
     useEffect(() => {
         dispatch(loadOrdersList());
@@ -95,10 +95,10 @@ const StatisticPage = () => {
     const isValid = Object.keys(errors).length === 0;
 
     useEffect(() => {
-        if (currentUser && !data) {
-            setData({ ...currentUser });
+        if (statistic && !data) {
+            setData({ ...statistic });
         }
-    }, [currentUser, data]);
+    }, [statistic, data]);
 
     useEffect(() => {
         if (data && isLoading) {
@@ -158,8 +158,8 @@ const StatisticPage = () => {
                                 />
                                 <RadioFildPage
                                     options={[
-                                        { name: "Наличные", value: "Наличные" },
-                                        { name: "Перевод", value: "Перевод" }
+                                        { name: "Наличные", value: "cash" },
+                                        { name: "Перевод", value: "card" }
                                     ]}
                                     value={data.payment}
                                     name="payment"

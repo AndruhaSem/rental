@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { getUsersList } from "../../store/users";
 
 const NavBarLk = () => {
-    const currentUSer = useSelector(getUsersList());
+    const user = useSelector(getUsersList());
     return (
         <>
             <NavLink exact to="/lk">
@@ -13,18 +13,18 @@ const NavBarLk = () => {
             <NavLink to="/lk/details">
                 <i className="bi bi-person"></i>Профиль
             </NavLink>
-            {currentUSer.is_admin || currentUSer.isJobs ? (
+            {user.is_admin || user.isJobs ? (
                 <NavLink to="/lk/rental">
                     <i className="bi bi-clock"></i>Аренда
                 </NavLink>
             ) : null}
 
-            {currentUSer.is_admin ? (
+            {user.is_admin ? (
                 <NavLink to="/lk/statistic">
                     <i className="bi bi-clipboard2-data"></i>Статистика
                 </NavLink>
             ) : null}
-            {currentUSer.is_admin ? (
+            {user.is_admin ? (
                 <NavLink to="/lk/money">
                     <i className="bi bi-bank"></i>Деньги
                 </NavLink>

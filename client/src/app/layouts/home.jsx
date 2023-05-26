@@ -12,23 +12,40 @@ const Home = () => {
     const sliders = useSelector(getSlider());
     const isLOading = useSelector(getSliderLoadingStatus());
     const count = useRef(null);
+    const widthRef = useRef(0);
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(loadSliderList());
     }, []);
     function handleClickRight() {
-        if (offset === 620) {
-            setOffset((prevState) => (prevState = 0));
+        if (widthRef.current.clientWidth === 938) {
+            offset === 620
+                ? setOffset((prevState) => (prevState = 0))
+                : setOffset((prevState) => (prevState += 310));
+        } else if (widthRef.current.clientWidth === 630) {
+            offset === 930
+                ? setOffset((prevState) => (prevState = 0))
+                : setOffset((prevState) => (prevState += 310));
         } else {
-            setOffset((prevState) => (prevState += 310));
+            offset === 1240
+                ? setOffset((prevState) => (prevState = 0))
+                : setOffset((prevState) => (prevState += 310));
         }
     }
 
     function handleClickLeft() {
-        if (offset === 0) {
-            setOffset((prevState) => (prevState = 620));
+        if (widthRef.current.clientWidth === 938) {
+            offset === 0
+                ? setOffset((prevState) => (prevState = 620))
+                : setOffset((prevState) => (prevState -= 310));
+        } else if (widthRef.current.clientWidth === 630) {
+            offset === 0
+                ? setOffset((prevState) => (prevState = 930))
+                : setOffset((prevState) => (prevState -= 310));
         } else {
-            setOffset((prevState) => (prevState -= 310));
+            offset === 0
+                ? setOffset((prevState) => (prevState = 1240))
+                : setOffset((prevState) => (prevState -= 310));
         }
     }
 
@@ -66,6 +83,7 @@ const Home = () => {
                             handleClickRight={handleClickRight}
                             handleTouchStart={handleTouchStart}
                             handleTouchMove={handleTouchMove}
+                            widthRef={widthRef}
                         />
                     )}
                 </div>

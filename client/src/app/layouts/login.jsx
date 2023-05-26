@@ -44,35 +44,6 @@ const Login = () => {
                 </div>
             </div>
         </div>
-        // <div className="containe mtt-5">
-        //     <div className="roww">
-        //         <div className="col-mdd-6 offset-mdd-3 shadoww pp-4">
-        //             {formType === "register" ? (
-        //                 <>
-        //                     <h3 className="mb-4">Регистрация</h3>
-        //                     <RegisterForm />
-        //                     <p>
-        //                         Alredy have account?{" "}
-        //                         <a role="button" onClick={toggleFormType}>
-        //                             Sigin In
-        //                         </a>
-        //                     </p>
-        //                 </>
-        //             ) : (
-        //                 <>
-        //                     <h3 className="mb-4">Вход</h3>
-        //                     <LoginForm />
-        //                     <p>
-        //                         Dont have account?{" "}
-        //                         <a role="button" onClick={toggleFormType}>
-        //                             Sigin Up
-        //                         </a>
-        //                     </p>
-        //                 </>
-        //             )}
-        //         </div>
-        //     </div>
-        // </div>
     );
 };
 

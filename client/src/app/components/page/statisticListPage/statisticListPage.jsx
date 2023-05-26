@@ -17,7 +17,7 @@ function StatisticListPage() {
     const [currentPage, setCurrenPage] = useState(1);
     const pageSize = 10;
     const dispatch = useDispatch();
-    const statistic = useSelector(getStatistics());
+    const statistics = useSelector(getStatistics());
     const isLoading = useSelector(getOrdersLoadingStatus());
     const [sortBy, setSortBy] = useState({ path: "id", order: "asc" });
 
@@ -35,7 +35,11 @@ function StatisticListPage() {
         dispatch(deleteOrder(userId));
     }
 
-    const sortedStatistic = _.orderBy(statistic, [sortBy.path], [sortBy.order]);
+    const sortedStatistic = _.orderBy(
+        statistics,
+        [sortBy.path],
+        [sortBy.order]
+    );
     const statisticCrop = paginate(sortedStatistic, currentPage, pageSize);
 
     useEffect(() => {
@@ -43,8 +47,8 @@ function StatisticListPage() {
             setCurrenPage((prevState) => prevState - 1);
         }
     }, [statisticCrop.length]);
-    if (!isLoading && statistic) {
-        const count = statistic.length;
+    if (!isLoading && statistics) {
+        const count = statistics.length;
         return (
             <>
                 <div className="Personal-area_nav">
